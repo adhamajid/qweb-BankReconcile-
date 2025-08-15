@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="mpa_custom_modul.BankRecRecordFormLineIds" 
+        t-inherit="account_accountant.BankRecRecordFormLineIds" 
+        t-inherit-mode="extension">
+
+        <xpath expr="//thead" position="replace">
+            <thead>
+                <tr>
+                    <t t-foreach="line_ids_columns" t-as="column" t-key="column[0]">
+                        <t t-if="column[0] == 'partner'">
+                            <th t-if="column[0] === 'partner'">Vendor/Customer</th>
+                        </t>
+                        <t t-elif="['amount_currency', 'debit', 'credit', 'balance'].includes(column[0])">
+                            <th class="o_list_number_th text-end" t-esc="column[1]"/>
+                        </t>
+                        <t t-elif="column[0] === '__trash'">
+                            <th class="o_list_actions_header"/>
+                        </t>
+                        <t t-else="">
+                            <th t-out="column[1]"/>
+                        </t>
+                    </t>
+                </tr>
+            </thead>
+        </xpath>
+
+
+    </t>
+</templates>
+
+
+
+
+
+
+
